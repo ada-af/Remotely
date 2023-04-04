@@ -70,6 +70,7 @@ else if (dbProvider == "postgresql")
 {
     services.AddDbContext<AppDb, PostgreSqlDbContext>(options =>
     {
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         // Password should be set in User Secrets in dev environment.
         // See https://docs.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-3.1
         if (!string.IsNullOrWhiteSpace(configuration.GetValue<string>("PostgresPassword")))
